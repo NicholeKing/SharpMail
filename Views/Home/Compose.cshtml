@@ -1,0 +1,52 @@
+<style type="text/css">
+	.container {
+		margin-top: 20px;
+	}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 10px">
+	<div class="mr-auto">
+		<img class="navbar-brand" src="~/css/csharp_logo.png" width=50px>
+		<h2 class="navbar-brand" style="color:white;">SharpMail</h2>
+		<h2 class="navbar-brand">Hello @ViewBag.username.EName</h2>
+	</div>
+	<div class="mr-auto">
+		<a href="/Inbox" class="nav-item btn btn-outline-light">Inbox (@ViewBag.counter)</a>
+		<a href="/Deleted" class="nav-item btn btn-outline-light">Deleted</a>
+		<a href="/Sent" class="nav-item btn btn-outline-light">Sent</a>
+		<a href="/Compose" class="nav-item btn btn-light">Compose</a>
+	</div>
+	<div>
+		<div class="navbar-nav mr-auto">
+			<a class="nav-item btn btn-outline-light" href="/logout" style="margin-right: 10px">Logout</a>
+		</div>
+	</div>
+</nav>
+<div class="container">
+	<form method="post" action="/send">
+		@model Mail
+		<div class="form-group">
+			<span asp-validation-for="Receiver" style="color: red;"></span>
+			<select class="form-control" asp-for="Receiver">
+			@{
+				foreach(var n in ViewBag.others)
+				{
+					<option value="@n.EName">@n.EName</option>
+				}
+			}
+			</select>
+		</div>
+		<div class="form-group">
+			<span asp-validation-for="Subject" style="color: red;"></span>
+			<input type="text" class="form-control" value="Subject" asp-for="Subject">
+		</div>
+		<div class="form-group">
+			<span asp-validation-for="Content" style="color: red;"></span>
+			<textarea rows="15" class="form-control" asp-for="Content"></textarea>
+		</div>
+		<div hidden>
+			<input asp-for="Sender" value="@ViewBag.username.EName">
+		</div>
+		<input type="submit" class="btn btn-dark" value="Send">
+	</form>
+</div>

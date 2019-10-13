@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 10px">
+	<div class="mr-auto">
+		<img class="navbar-brand" src="~/css/csharp_logo.png" width=50px>
+		<h2 class="navbar-brand" style="color:white;">SharpMail</h2>
+	</div>
+	<div>
+		<div class="navbar-nav mr-2">
+			<a class="nav-item btn btn-outline-light" href="/register" style="margin-right: 10px">Register</a>
+			<a class="nav-item btn btn-outline-light" href="/">Log In</a>
+		</div>
+	</div>
+</nav>
+<div class="text-center">
+    <h1 class="display-4">New Member</h1>
+    @model User
+    <div class="row justify-content-center" style="margin-right: 0px;">
+	    <div class="card-body col-sm-4">
+	    	<form method="post" action="/regCheck">
+	    		<div class="form-group">
+	    			<label>Create EName</label>
+	    			<div class="row">
+		    			<div class="col-sm-8" style="padding-right: 0px;">
+		    				<input class="form-control" type="text" asp-for="EName">
+		    			</div>
+		    			<div class="col-sm-3" style="padding: 0px; line-height: 0px; margin-top: 0.5rem;">
+		    				<h6>&#64;sharpmail.com</h6>
+		    			</div>
+		    		</div>
+	    			<span asp-validation-for="EName" style="color:red;"></span>
+	    		</div>
+	    		<div hidden>
+	    			<input asp-for="Email" value="ename@sharpmail.com">
+	    		</div>
+	    		<div class="form-group">
+	    			<label>Password</label>
+	    			<input class="form-control" type="password" asp-for="Password">
+	    			<small style="line-height: 0px;">Must be at least 8 characters long and contain at least 1 special character</small>
+	    			<span asp-validation-for="Password" style="color:red;"></span>
+	    		</div>
+	    		<div class="form-group">
+	    			<label>Confirm Password</label>
+	    			<input class="form-control" type="password" asp-for="Confirm">
+	    			<span asp-validation-for="Confirm" style="color:red;"></span>
+	    		</div>
+	    		<input type="submit" class="btn btn-outline-dark" name="Log in">
+	    	</form>
+	    </div>
+	</div>
+</div>
